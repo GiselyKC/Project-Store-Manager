@@ -10,7 +10,7 @@ router.get('/products', productsController.getAll);
 router.get('/products/:id', productsController.getById);
 router.get('/sales', salesController.getAll);
 router.get('/sales/:id', salesController.getById);
-router.post('/products', validateName, validateQuantity);
+router.post('/products', validateName, validateQuantity, productsController.postAdd);
 router.post('/sales', validateProductId, validateQuantitySales);
 router.put('/products/:id', validateName, validateQuantity);
 router.put('/sales/:id', validateProductId, validateQuantitySales);
