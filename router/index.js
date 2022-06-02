@@ -12,6 +12,6 @@ router.get('/sales', salesController.getAll);
 router.get('/sales/:id', salesController.getById);
 router.post('/products', validateName, validateQuantity, productsController.postAdd);
 router.post('/sales', validateProductId, validateQuantitySales);
-router.put('/products/:id', validateName, validateQuantity);
+router.put('/products/:id', validateName, validateQuantity, productsController.putUpdate);
 router.put('/sales/:id', validateProductId, validateQuantitySales);
 module.exports = router;
