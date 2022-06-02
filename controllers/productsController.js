@@ -7,11 +7,7 @@ const getAll = async (_req, res) => {
 
 const getById = async (req, res) => {
   const { id } = req.params;
-  const [[rows]] = await productsService.getById(id);
-
-  if (!rows || rows.length === 0) {
-    return res.status(404).json({ message: 'Product not found' });
-  }
+  const rows = await productsService.getById(id);
 
   res.status(200).json(rows);
 };
@@ -28,8 +24,18 @@ const postAdd = async (req, res) => {
   return res.status(201).json(result);
 };
 
+const putUpdate = async (req, res) => {
+  const { name, quantity } = req.body;
+  const { id } = req.params;
+
+  const result = await productsService.putUpdate(id, name, quantity);
+
+  return res.status(200).json(result);
+};
+
 module.exports = {
   getAll,
   getById,
   postAdd,
+  putUpdate,
 };
