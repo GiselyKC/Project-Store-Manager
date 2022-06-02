@@ -16,7 +16,16 @@ const getById = async (req, res) => {
   res.status(200).json(rows);
 };
 
+const postAdd = async (req, res) => {
+  const array = req.body;
+
+  const result = await salesService.postAdd(array);
+
+  return res.status(201).json(result);
+};
+
 module.exports = {
   getAll,
   getById,
+  postAdd,
 };
