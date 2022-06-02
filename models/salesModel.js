@@ -22,7 +22,28 @@ const getByIdSales = (id) => connection.execute(
     WHERE sap.sale_id = ?`, [id],
 );
 
+const postAddSales = async () => {
+  const [row] = await connection.execute(
+    `INSERT INTO StoreManager.sales (date)
+    VALUES (NOW())`,
+  );
+  const result = {
+    id: row.insertId,
+  };
+  return result;
+};
+
+const postAddSalesProducts = async (id, productId, quantity) => {
+  await connection.execute(
+    `INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity)
+    VALUES (?, ?, ?)`,
+    [id, productId, quantity],
+  );
+};
+
 module.exports = {
   getAllSales,
   getByIdSales,
+  postAddSales,
+  postAddSalesProducts,
 };
