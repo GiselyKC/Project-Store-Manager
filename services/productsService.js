@@ -1,16 +1,31 @@
 const productsModel = require('../models/productsModel');
 
+const error = { status: 404, message: 'Product not found' };
+
 const getAll = () => productsModel.getAllProducts();
 
 const getInfos = (name) => productsModel.getInfosProducts(name);
 
-const getById = (id) => productsModel.getByIdProducts(id);
+const getById = async (id) => {
+  const [[rows]] = await productsModel.getByIdProducts(id);
+
+  if (!rows || rows.length === 0) {
+    throw error;
+  }
+  return rows;
+};
 
 const postAdd = (name, quantity) => productsModel.postAddProducts(name, quantity);
+
+const putUpdate = async (id, name, quantity) => {
+  await getById(id);
+  return productsModel.putUpdateProducts(id, name, quantity);
+};
 
 module.exports = {
   getAll,
   getInfos,
   getById,
   postAdd,
+  putUpdate,
 };
