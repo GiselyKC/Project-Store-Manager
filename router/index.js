@@ -13,7 +13,7 @@ router.get('/sales/:id', salesController.getById);
 router.post('/products', validateName, validateQuantity, productsController.postAdd);
 router.post('/sales', validateProductId, validateQuantitySales, salesController.postAdd);
 router.put('/products/:id', validateName, validateQuantity, productsController.putUpdate);
-router.put('/sales/:id', validateProductId, validateQuantitySales);
+router.put('/sales/:id', validateProductId, validateQuantitySales, salesController.putUpdate);
 router.delete('/products/:id', productsController.remove);
 
 module.exports = router;
