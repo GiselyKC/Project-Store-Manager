@@ -31,8 +31,26 @@ const postAdd = async (array) => {
   };
 };
 
+const putUpdate = async (id, array) => {
+  await getById(id);
+  const infos = array.map(({ productId, quantity }) => {
+    salesModel.putUpdateSales(id, productId, quantity);
+    const arr = {
+      productId,
+      quantity,
+    };
+    return arr;
+  });
+
+  return {
+    saleId: id,
+    itemUpdated: infos,
+  };
+};
+
 module.exports = {
   getAll,
   getById,
   postAdd,
+  putUpdate,
 };
