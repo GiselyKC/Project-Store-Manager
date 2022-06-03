@@ -20,8 +20,18 @@ const postAdd = async (req, res) => {
   return res.status(201).json(result);
 };
 
+const putUpdate = async (req, res) => {
+  const array = req.body;
+  const { id } = req.params;
+
+  const result = await salesService.putUpdate(id, array);
+
+  return res.status(200).json(result);
+};
+
 module.exports = {
   getAll,
   getById,
   postAdd,
+  putUpdate,
 };
