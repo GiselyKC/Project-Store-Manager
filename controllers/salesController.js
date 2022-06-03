@@ -7,11 +7,7 @@ const getAll = async (_req, res) => {
 
 const getById = async (req, res) => {
   const { id } = req.params;
-  const [rows] = await salesService.getById(id);
-
-  if (!rows || rows.length === 0) {
-    return res.status(404).json({ message: 'Sale not found' });
-  }
+  const rows = await salesService.getById(id);
 
   res.status(200).json(rows);
 };

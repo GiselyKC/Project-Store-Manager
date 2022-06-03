@@ -1,8 +1,17 @@
 const salesModel = require('../models/salesModel');
 
+const error = { status: 404, message: 'Sale not found' };
+
 const getAll = () => salesModel.getAllSales();
 
-const getById = (id) => salesModel.getByIdSales(id);
+const getById = async (id) => {
+  const [rows] = await salesModel.getByIdSales(id);
+
+  if (!rows || rows.length === 0) {
+    throw error;
+  }
+  return rows;
+};
 
 const postAdd = async (array) => {
   const { id } = await salesModel.postAddSales();
