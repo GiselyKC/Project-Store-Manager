@@ -49,10 +49,18 @@ const putUpdateSales = async (saleId, productId, quantity) => {
   );
 };
 
+const removeSales = (id) => {
+  connection.execute(
+    'DELETE FROM comics.characters WHERE id = ?',
+    [id],
+  );
+};
+
 module.exports = {
   getAllSales,
   getByIdSales,
   postAddSales,
   postAddSalesProducts,
   putUpdateSales,
+  removeSales,
 };

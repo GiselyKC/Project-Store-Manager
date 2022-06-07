@@ -8,7 +8,7 @@ const getInfos = (name) => productsModel.getInfosProducts(name);
 
 const getById = async (id) => {
   const [[rows]] = await productsModel.getByIdProducts(id);
-
+  
   if (!rows || rows.length === 0) {
     throw error;
   }

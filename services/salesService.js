@@ -48,9 +48,15 @@ const putUpdate = async (id, array) => {
   };
 };
 
+const remove = async (id) => {
+  await getById(id);
+  return salesModel.removeSales(id);
+};
+
 module.exports = {
   getAll,
   getById,
   postAdd,
   putUpdate,
+  remove,
 };

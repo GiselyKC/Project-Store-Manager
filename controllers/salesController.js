@@ -2,6 +2,7 @@ const salesService = require('../services/salesService');
 
 const getAll = async (_req, res) => {
   const [rows] = await salesService.getAll();
+
   res.status(200).json(rows);
 };
 
@@ -29,9 +30,17 @@ const putUpdate = async (req, res) => {
   return res.status(200).json(result);
 };
 
+const remove = async (req, res) => {
+  const { id } = req.params;
+  await salesService.remove(id);
+
+  res.status(204).json();
+};
+
 module.exports = {
   getAll,
   getById,
   postAdd,
   putUpdate,
+  remove,
 };
