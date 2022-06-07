@@ -1,5 +1,4 @@
 const validateProductId = (req, res, next) => {
-  console.log('validateProductId');
   const ProductId = req.body.some(({ productId }) => {
     if (!productId || productId === '') {
       return true;
@@ -18,7 +17,6 @@ const someQuantitySales = ({ quantity }) => {
 };
 
 const validateQuantitySales = (req, res, next) => {
-  console.log('oi');
   const QuantitySales = req.body.some(someQuantitySales);
   const QuantitySales2 = req.body.some(({ quantity }) => {
     if (quantity <= 0) {
