@@ -30,6 +30,7 @@ const putUpdate = async (id, name, quantity) => {
 
 const remove = async (id) => {
   await getById(id);
+  
   return productsModel.removeProducts(id);
 };
 
