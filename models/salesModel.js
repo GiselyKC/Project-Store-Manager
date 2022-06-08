@@ -50,7 +50,11 @@ const putUpdateSales = async (saleId, productId, quantity) => {
 
 const removeSales = (id) => {
   connection.execute(
-    'DELETE FROM comics.characters WHERE id = ?',
+    'DELETE FROM StoreManager.sales_products WHERE sale_id = ?',
+    [id],
+  );
+  connection.execute(
+    'DELETE FROM StoreManager.sales WHERE id = ?',
     [id],
   );
 };
